@@ -14,6 +14,7 @@
 ######***Libraries#########
 library(here)
 
+
 #######***LOAD PROJECT LIBRARIES AND FUNCTIONS#############
 #Functions specific to this section
 # source("./scripts/functions.R")
@@ -24,18 +25,16 @@ library(here)
 # source("./scripts/data.R")
 
 ######MAKE OUTPUTS########
-rmarkdown::render(here("scripts","Lesson.Rmd"), 
-                  output_dir = here("lesson"), 
-                  output_file = "Lesson.pdf")
 
-rmarkdown::render(here("scripts","Homework.Rmd"), 
-                  output_dir = here("lesson"), 
-                  output_file = "Homework.pdf")
+echoTF<-FALSE
+title0<-"Lesson 2: Base R vs Tidy R - Homework"
+rmarkdown::render(here("code","homework_answers.Rmd"), 
+                  output_dir = here("code"), 
+                  output_file = "3_Homework.pdf")
 
-rmarkdown::render(here("scripts","Homework-Answers.Rmd"), 
-                  output_dir = here("lesson"), 
-                  output_file = "Homework-Answers.pdf")
+echoTF<-TRUE
+title0<-"Lesson 2: Base R vs Tidy R - Homework Answers"
+rmarkdown::render(here("code","homework_answers.Rmd"), 
+                  output_dir = here("code"), 
+                  output_file = "3_Homework-Answers.pdf")
 
-rmarkdown::render(here("scripts","presentation.Rpres"), 
-                  output_dir = here("lesson"), 
-                  output_file = "Presentation.html")

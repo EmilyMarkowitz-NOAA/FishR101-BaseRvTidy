@@ -11,7 +11,12 @@ node_modules
 _book
 
 # eBook build output
-*.epub
-*.mobi
-*.pdf
 .Rproj.user
+
+renv
+renv.lock
+
+# Make available after class
+Homework-Answers.Rmd
+3_Homework-Answers.pdf
+tidyverse_usage.png
