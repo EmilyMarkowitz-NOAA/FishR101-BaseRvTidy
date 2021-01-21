@@ -24,18 +24,23 @@
 
 # Some info about the CO2 dataset: "The CO2 data frame has 84 rows and 5 columns of data from an experiment on the cold tolerance of the grass species *Echinochloa crus-galli*."
 
-CO2<-datasets::CO2
+CO2<-data.frame(datasets::CO2)
 head(CO2)
 
-## a. `rename()` the "conc" column to "Concenctration mL/L" and "treatment" column to "condition". The new name for the conc column is not a great name (dare I say 'tidy' name?) so we'll fix that in the next question. 
+## a. `rename()` the "conc" column to "Concenctration mL/L" and "Treatment" column to "condition". The new name for the conc column is not a great name (dare I say 'tidy' name?) so we'll fix that in the next question. Assign your object here as a new obect (name up to you!). 
 
 
-## b. Use the {janitor} function `clean_names` on the CO2 data. What does it do? How did {janitor} change our "Concenctration mL/L" column?
+## b. Use the {janitor} function `clean_names` on the new CO2 data you just created in 2a. What does it do? How did {janitor} change our "Concenctration mL/L" column? 
+
+# Again, assign your object here as a new obect (name up to you!).
 
 
-## c. Use `pivot_wider` make columns of uptake (value_from) for each plant (names_from). 
+## c. Use `pivot_wider` make columns of uptake (values_from) for each plant (names_from) in your new data set from question 2b. 
+
+# This is not a 'tidy' way of looking at data, but is good practice! Assign your object here as a new obect (name up to you!). 
 
 
-## d. Use `pivot_longer` to undo what you did in 2c. 
-# To see how to get the old names back, check out the `names_to` and `values_to` variable in `?pivot_longer`. This will likely incure some new rows with `NA`s, so you'll need to remove that here with `values_drop_na`. You can check if you actually got it back to origional form by seeing if the dimensions of the data.frame are the same as the origional dataset. As stated earlier, `dim(datasets::CO2)` was 84 rows and 5 columns. 
+## d. Use `pivot_longer` to undo what you did in 2c using the data that you created in 2c. 
+
+# To see how to get the old names back, check out the `names_to` and `values_to` variable in `?pivot_longer`. This will likely incure some new rows with `NA`s, so you'll need to remove that here with `values_drop_na`. You can check if you actually got it back to origional form by seeing if the dimensions of the data.frame are the same as the origional dataset. As stated earlier, `dim(datasets::CO2)` was 84 rows and 5 columns.
 
