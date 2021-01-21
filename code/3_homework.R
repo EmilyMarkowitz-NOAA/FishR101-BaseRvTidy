@@ -20,7 +20,7 @@
 
 # 2. Let's play with some data! 
 
-# You can view the dataset CO2 in more detail using ` view(CO2) ` and learn about it using `?CO2`. CO2 comes from the {datasets} package which should already be automatically loaded in your R. 
+# You can view the dataset CO2 in more detail using ` View(CO2) ` and learn about it using `?CO2`. CO2 comes from the {datasets} package which should already be automatically loaded in your R. 
 
 # Some info about the CO2 dataset: "The CO2 data frame has 84 rows and 5 columns of data from an experiment on the cold tolerance of the grass species *Echinochloa crus-galli*."
 
