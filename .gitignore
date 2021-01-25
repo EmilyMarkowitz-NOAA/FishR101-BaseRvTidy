@@ -15,8 +15,3 @@ _book
 
 renv
 renv.lock
-
-# Make available after class
-Homework-Answers.Rmd
-3_Homework-Answers.pdf
-tidyverse_usage.png
