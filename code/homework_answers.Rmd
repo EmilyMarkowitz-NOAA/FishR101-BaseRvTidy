@@ -45,7 +45,7 @@ webshot::webshot("https://tidyverse.tidyverse.org/", "tidyverse_usage.png",
 # {dplyr} 
 ```
 
-## d. Can you use {tidyverse} without {base} R?: 
+## d. Can you use {tidyverse} without {base} R?
 
 ```{r, echo = echoTF, eval = echoTF}
 # Nope! {Tidyverse} is built on {Base} R. 
@@ -58,6 +58,7 @@ You can view the dataset CO2 in more detail using ` View(CO2) ` and learn about 
 Some info about the CO2 dataset: "The CO2 data frame has 84 rows and 5 columns of data from an experiment on the cold tolerance of the grass species *Echinochloa crus-galli*."
 
 ```{r, echo = TRUE}
+#Note: This function or data set name (in this case, data set) may occur in other packages so here I am using the "::" to say I specifically want the data 'CO2' from {datasets}. 
 CO2<-data.frame(datasets::CO2)
 kable(head(CO2))
 ```
@@ -65,7 +66,7 @@ kable(head(CO2))
 ## a. `rename()` the "conc" column to "Concenctration mL/L" and "Treatment" column to "condition". The new name for the conc column is not a great name (dare I say 'tidy' name?) so we'll fix that in the next question. Assign your object here as a new obect (name up to you!). 
 
 ```{r, echo = echoTF, eval = echoTF}
-CO2_a<-rename(CO2, 
+CO2_a<-dplyr::rename(CO2, 
             "Concenctration mL/L" = "conc")
 kable(head(CO2_a))
 ```
@@ -86,7 +87,7 @@ kable(head(CO2_b))
 This is not a 'tidy' way of looking at data, but is good practice! Assign your object here as a new obect (name up to you!). 
 
 ```{r, echo = echoTF, eval = echoTF}
-CO2_c<-pivot_wider(data = CO2_b, names_from = plant, values_from = uptake)
+CO2_c<-tidyr::pivot_wider(data = CO2_b, names_from = plant, values_from = uptake)
 kable(head(CO2_c))
 ```
 
@@ -95,7 +96,7 @@ kable(head(CO2_c))
 To see how to get the old names back, check out the `names_to` and `values_to` variable in `?pivot_longer`. This will likely incure some new rows with `NA`s, so you'll need to remove that here with `values_drop_na`. You can check if you actually got it back to origional form by seeing if the dimensions of the data.frame are the same as the origional dataset. As stated earlier, `dim(datasets::CO2)` was 84 rows and 5 columns. 
 
 ```{r, echo = echoTF, eval = echoTF}
-CO2_d<-pivot_longer(data = CO2_c, 
+CO2_d<-tidyr::pivot_longer(data = CO2_c, 
                   cols = c(Qn1:Mc3), 
                   names_to = "plant", 
                   values_to = "uptake", 
