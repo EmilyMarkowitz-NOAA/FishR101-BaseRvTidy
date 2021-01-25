@@ -8,9 +8,9 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, error = FALSE, message = FALSE, 
                       tinytex.verbose = TRUE)
-library(kableExtra)
+# library(kableExtra)
 library(webshot)
-library(here)
+# library(here)
 # library(png)
 library(knitr)
 ```
@@ -58,9 +58,11 @@ You can view the dataset CO2 in more detail using ` View(CO2) ` and learn about 
 Some info about the CO2 dataset: "The CO2 data frame has 84 rows and 5 columns of data from an experiment on the cold tolerance of the grass species *Echinochloa crus-galli*."
 
 ```{r, echo = TRUE}
-#Note: This function or data set name (in this case, data set) may occur in other packages so here I am using the "::" to say I specifically want the data 'CO2' from {datasets}. 
+# Note: This function or data set name (in this case, data set) 
+# may occur in other packages so here I am using the "::" to say I 
+# specifically want the data 'CO2' from {datasets}. 
 CO2<-data.frame(datasets::CO2)
-kable(head(CO2))
+(head(CO2))
 ```
 
 ## a. `rename()` the "conc" column to "Concenctration mL/L" and "Treatment" column to "condition". The new name for the conc column is not a great name (dare I say 'tidy' name?) so we'll fix that in the next question. Assign your object here as a new obect (name up to you!). 
@@ -68,7 +70,7 @@ kable(head(CO2))
 ```{r, echo = echoTF, eval = echoTF}
 CO2_a<-dplyr::rename(CO2, 
             "Concenctration mL/L" = "conc")
-kable(head(CO2_a))
+(head(CO2_a))
 ```
 
 ## b. Use the {janitor} function `clean_names` on the new CO2 data you just created in 2a. What does it do? How did {janitor} change our "Concenctration mL/L" column? 
@@ -77,7 +79,7 @@ Again, assign your object here as a new obect (name up to you!).
 
 ```{r, echo = echoTF, eval = echoTF}
 CO2_b<-janitor::clean_names(CO2_a)
-kable(head(CO2_b))
+(head(CO2_b))
 
 # clean_names changed the "conc" column from "Concenctration mL/L" to "concenctration_m_l_l"
 ```
@@ -88,7 +90,7 @@ This is not a 'tidy' way of looking at data, but is good practice! Assign your o
 
 ```{r, echo = echoTF, eval = echoTF}
 CO2_c<-tidyr::pivot_wider(data = CO2_b, names_from = plant, values_from = uptake)
-kable(head(CO2_c))
+(head(CO2_c))
 ```
 
 ## d. Use `pivot_longer` to undo what you did in 2c using the data that you created in 2c. 
@@ -97,18 +99,13 @@ To see how to get the old names back, check out the `names_to` and `values_to` v
 
 ```{r, echo = echoTF, eval = echoTF}
 CO2_d<-tidyr::pivot_longer(data = CO2_c, 
-                  cols = c(Qn1:Mc3), 
+                  cols = c(Qn1:Mc3), #Alternatively: cols = c(4:15),
                   names_to = "plant", 
                   values_to = "uptake", 
                   values_drop_na = TRUE)
-kable(head(CO2_d))
-dim(CO2_d)
 
-#alternatively
-CO2_d<-pivot_longer(data = CO2_c, 
-                  cols = c(4:15), 
-                  names_to = "plant", 
-                  values_to = "uptake", 
-                  values_drop_na = TRUE)
+
+(head(CO2_d))
+dim(CO2_d)
 ```
 
