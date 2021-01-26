@@ -2,7 +2,12 @@
 title: "`r title0`"
 author: "Instructor: Emily Markowitz (Emily.Markowitz@noaa.gov)"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
-output: pdf_document
+output: 
+  pdf_document:
+    toc: true
+    number_sections: true
+    toc_depth: 2
+    df_print: kable
 ---
 
 ```{r setup, include=FALSE}
@@ -14,12 +19,13 @@ library(webshot)
 library(knitr)
 ```
 
+\newpage
 
-# `r ifelse(echoTF == TRUE, "Answers to ", "") `Questions: 
+**`r ifelse(echoTF == TRUE, "Answers to ", "") `Questions: **
 
-# 1. Let's explore Tidyverse!
+# Let's explore Tidyverse!
 
-## a. Think of Tidyverse as a family of packages. Which packages are loaded with {tidyverse}? What do each of these packages do? Check out: https://tidyverse.tidyverse.org/
+## Think of Tidyverse as a family of packages. Which packages are loaded with {tidyverse}? What do each of these packages do? Check out: https://tidyverse.tidyverse.org/
 
 ```{r, echo = echoTF, eval = echoTF}
 # You can find out by looking at the packages that are loaded when you use
@@ -30,27 +36,27 @@ webshot::webshot("https://tidyverse.tidyverse.org/", "tidyverse_usage.png",
         cliprect = c(500, 5, 600, 505))
 ```
 
-## b. Which package is `pivot_wider` from?
+## Which package is `pivot_wider` from?
 
 ```{r, echo = echoTF, eval = echoTF}
 ?pivot_wider
 # {tidyr} 
 ```
 
-## c. Which package is `rename` from?
+## Which package is `rename` from?
 
 ```{r, echo = echoTF, eval = echoTF}
 ?rename
 # {dplyr} 
 ```
 
-## d. Can you use {tidyverse} without {base} R?
+## Can you use {tidyverse} without {base} R?
 
 ```{r, echo = echoTF, eval = echoTF}
 # Nope! {Tidyverse} is built on {Base} R. 
 ```
 
-# 2. Let's play with some data! 
+# Let's play with some data! 
 
 You can view the dataset CO2 in more detail using ` View(CO2) ` and learn about it using `?CO2`. CO2 comes from the {datasets} package which should already be automatically loaded in your R. 
 
@@ -64,7 +70,7 @@ CO2<-data.frame(datasets::CO2)
 head(CO2)
 ```
 
-## a. `rename()` the "conc" column to "Concenctration mL/L" and "Treatment" column to "Condition". The new name for the conc column is not a great name (dare I say 'tidy' name?) so we'll fix that in the next question. Assign your object here as a new obect (name up to you!). 
+## `rename()` the "conc" column to "Concenctration mL/L" and "Treatment" column to "Condition". The new name for the conc column is not a great name (dare I say 'tidy' name?) so we'll fix that in the next question. Assign your object here as a new obect (name up to you!). 
 
 ```{r, echo = echoTF, eval = echoTF}
 CO2_a<-dplyr::rename(CO2, 
@@ -75,7 +81,7 @@ CO2_a<-dplyr::rename(CO2,
 head(CO2_a)
 ```
 
-## b. Use the {janitor} function `clean_names` on the new CO2 data you just created in 2a. What does it do? How did {janitor} change our "Concenctration mL/L" column? 
+## Use the {janitor} function `clean_names` on the new CO2 data you just created in 2a. What does it do? How did {janitor} change our "Concenctration mL/L" column? 
 
 Again, assign your object here as a new obect (name up to you!). 
 
@@ -87,7 +93,7 @@ head(CO2_b)
 ```
 
 
-## c. Use `pivot_wider` make columns of uptake (values_from) for each plant (names_from) in your new data set from question 2b. 
+## Use `pivot_wider` make columns of uptake (values_from) for each plant (names_from) in your new data set from question 2b. 
 This is not a 'tidy' way of looking at data, but is good practice! Assign your object here as a new obect (name up to you!). 
 
 ```{r, echo = echoTF, eval = echoTF}
@@ -95,7 +101,7 @@ CO2_c<-tidyr::pivot_wider(data = CO2_b, names_from = plant, values_from = uptake
 head(CO2_c)
 ```
 
-## d. Use `pivot_longer` to undo what you did in 2c using the data that you created in 2c. 
+## Use `pivot_longer` to undo what you did in 2c using the data that you created in 2c. 
 
 To see how to get the old names back, check out the `names_to` and `values_to` variable in `?pivot_longer`. This will likely incure some new rows with `NA`s, so you'll need to remove that here with `values_drop_na`. You can check if you actually got it back to origional form by seeing if the dimensions of the data.frame are the same as the origional dataset. As stated earlier, `dim(datasets::CO2)` was 84 rows and 5 columns. 
 
